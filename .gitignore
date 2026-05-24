@@ -1,0 +1,12 @@
+# Dependencies
+backend/node_modules/
+
+# Database (auto-created on first run)
+backend/data/
+
+# Real secrets — never commit
+backend/.env
+
+# OS junk
+.DS_Store
+Thumbs.db

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gallery — Curry Time restaurant. A visual showcase of our food categories and dining experience.">
+  <link rel="icon" href="img/brand/Logo.png" type="image/png">
+  <title>Gallery — Curry Time</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .gallery-section { padding: 64px 0; }
+
+    .gallery-intro {
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto 52px;
+    }
+    .gallery-intro p { color: var(--clr-text-muted); font-size: 1.05rem; line-height: 1.7; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 240px;
+      gap: 16px;
+    }
+    .gallery-card:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .gallery-card:nth-child(6) { grid-column: span 2; }
+
+    .gallery-card {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .gallery-card:hover { transform: scale(1.02); box-shadow: var(--shadow-lg); z-index: 1; }
+    .gallery-card:hover .gallery-label { opacity: 0; }
+    .gallery-card:hover .gallery-overlay { opacity: 1; }
+
+    .card-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .card-pattern { display: none; }
+
+    .bg--dosa    { background: url('img/gallery/gallery1.png') center / cover no-repeat; }
+    .bg--pizza   { background: url('img/gallery/gallery2.png') center / cover no-repeat; }
+    .bg--shakes  { background: url('img/gallery/gallery3.png') center / cover no-repeat; }
+    .bg--coffee  { background: url('img/gallery/gallery4.png') center / cover no-repeat; }
+    .bg--burgers { background: url('img/gallery/gallery5.png') center / cover no-repeat; }
+    .bg--fries   { background: url('img/gallery/gallery6.png') center / cover no-repeat; }
+    .bg--rice    { background: url('img/gallery/gallery7.png') center / cover no-repeat; }
+    .bg--bread   { background: url('img/gallery/gallery8.png') center / cover no-repeat; }
+    .bg--drinks  { background: url('img/gallery/gallery9.png') center / cover no-repeat; }
+    .bg--ambiance { background: url('img/gallery/gallery10.png') center / cover no-repeat; }
+    .bg--kitchen  { background: url('img/gallery/gallery11.png') center / cover no-repeat; }
+    .bg--spices   { background: url('img/gallery/gallery12.png') center / cover no-repeat; }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .gallery-overlay svg { color: rgba(255,255,255,0.85); }
+
+    .gallery-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px 20px 18px;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%);
+      transition: var(--transition);
+    }
+    .gallery-label h3 {
+      color: var(--clr-white);
+      font-size: 1.05rem;
+      font-family: var(--font-serif);
+      margin-bottom: 2px;
+    }
+    .gallery-label span {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.62);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .gallery-notice {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--clr-bg-alt);
+      border-radius: var(--radius-md);
+      padding: 24px 28px;
+      margin-top: 40px;
+      border: 1.5px dashed var(--clr-border);
+    }
+    .notice-icon {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--clr-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--clr-primary);
+      box-shadow: var(--shadow-sm);
+    }
+    .gallery-notice p { color: var(--clr-text-muted); font-size: 0.95rem; line-height: 1.6; }
+    .gallery-notice strong { color: var(--clr-primary); }
+
+    @media (max-width: 1024px) {
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+      .gallery-card:nth-child(1) { grid-column: span 2; }
+    }
+    @media (max-width: 640px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
+      .gallery-card:nth-child(1),
+      .gallery-card:nth-child(6) { grid-column: span 1; grid-row: span 1; }
+      .gallery-notice { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<input type="checkbox" id="nav-open" class="nav-checkbox">
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="navbar-brand">
+      <img src="img/brand/Logo.png" alt="Curry Time" class="brand-icon">
+      <em>Curry</em> <span>Time</span>
+    </a>
+    <label for="nav-open" class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </label>
+    <ul class="navbar-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html" class="nav-login">Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container">
+    <h1>Our Gallery</h1>
+    <p>A visual journey through our kitchen and dining experience.</p>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <span>Gallery</span>
+    </nav>
+  </div>
+</header>
+
+<main class="gallery-section">
+  <div class="container">
+
+    <div class="gallery-intro">
+      <p>We believe in serving our guests in the best possible way — no compromise on quality, presentation, or experience. Explore a taste of what awaits you at Curry Time.</p>
+    </div>
+
+    <div class="gallery-grid">
+
+      <div class="gallery-card">
+        <div class="card-bg bg--dosa"></div>
+        <div class="card-pattern"></div>
+        <div class="gallery-overlay">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="gallery-label"><h3>Dosa Selection</h3><span>South Indian Classics</span></div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="card-bg bg--pizza"></div>
+        <div class="card-pattern"></div>
+        <div class="gallery-overlay">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="gallery-label"><h3>Artisan Pizzas</h3><span>Wood-fired Style</span></div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="card-bg bg--shakes"></div>
+        <div class="card-pattern"></div>
+        <div class="gallery-overlay">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="gallery-label"><h3>Signature Shakes</h3><span>Thick &amp; Indulgent</span></div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="card-bg bg--coffee"></div>
+        <div class="card-pattern"></div>
+        <div class="gallery-overlay">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="gallery-label"><h3>Cold Coffees</h3><span>Brew &amp; Blends</span></div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="card-bg bg--burgers"></div>
+        <div class="card-pattern"></div>
+        <div class="gallery-overlay">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="gallery-label"><h3>Burgers</h3><span>Stacked to Perfection</span></div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="card-bg bg--fries"></div>
+        <div class="card-pattern"></div>
+        <div class="gallery-overlay">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="gallery-label"><h3>Fries &amp; Sides</h3><span>Crispy Every Time</span></div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="card-bg bg--rice"></div>
+        <div class="card-pattern"></div>
+        <div class="gallery-overlay">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="gallery-label"><h3>Rice Bowls</h3><span>Wholesome &amp; Filling</span></div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="card-bg bg--bread"></div>
+        <div class="card-pattern"></div>
+        <div class="gallery-overlay">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="gallery-label"><h3>Garlic Bread</h3><span>Fresh Baked</span></div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="card-bg bg--drinks"></div>
+        <div class="card-pattern"></div>
+        <div class="gallery-overlay">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="gallery-label"><h3>Cold Drinks</h3><span>Chilled &amp; Refreshing</span></div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="card-bg bg--ambiance"></div>
+        <div class="gallery-overlay">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="gallery-label"><h3>The Dining Room</h3><span>Warm &amp; Welcoming</span></div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="card-bg bg--kitchen"></div>
+        <div class="gallery-overlay">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="gallery-label"><h3>Our Kitchen</h3><span>Where the Magic Happens</span></div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="card-bg bg--spices"></div>
+        <div class="gallery-overlay">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="gallery-label"><h3>Spice Story</h3><span>Our Secret Ingredients</span></div>
+      </div>
+
+    </div>
+
+    <div class="gallery-notice">
+      <div class="notice-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      </div>
+      <p>Full photo gallery <strong>coming soon</strong> — we&#8217;re capturing every dish in its best light. Follow us on Instagram <strong>@CurryTime</strong> for sneak peeks in the meantime.</p>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3><em>Curry Time</em></h3>
+        <p>Bringing authentic Indian flavours to your table since 2008. Food that warms the soul, service that warms the heart.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Follow us on Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Follow us on Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Follow us on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Visit Us</h4>
+        <address>
+          F-89/23, Eros Gardens<br>
+          Faridabad 121001, Haryana
+          <strong>Phone</strong>
+          0129-4244444
+          <strong>Email</strong>
+          CurryTimes26@gmail.com
+          <strong>Hours</strong>
+          Daily, 11am &#8211; 11pm
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Curry Time. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/nav.js"></script>
+</body>
+</html>

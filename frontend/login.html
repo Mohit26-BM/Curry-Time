@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login to your Curry Time account to manage reservations and preferences.">
+  <link rel="icon" href="img/brand/Logo.png" type="image/png">
+  <title>Login — Curry Time</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(145deg, #25150A 0%, #5C2A0E 55%, #8B3A10 100%);
+    }
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    body::before { width: 500px; height: 500px; background: rgba(245,166,35,0.05); top: -120px; right: -100px; }
+    body::after  { width: 350px; height: 350px; background: rgba(192,82,42,0.08); bottom: -80px; left: -80px; }
+
+    .login-page {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+    }
+    .login-card {
+      background: rgba(255, 255, 255, 0.06);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 420px;
+      padding: 44px 40px;
+    }
+    .login-brand {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .login-brand a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      font-style: italic;
+      color: var(--clr-accent);
+    }
+    .login-brand a span { color: rgba(255,255,255,0.85); font-style: normal; }
+    .login-brand p { color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 8px; }
+
+    .login-title { font-size: 1.3rem; color: var(--clr-white); margin-bottom: 24px; }
+
+    /* Dark form overrides */
+    .login-card .form-group label   { color: rgba(255,255,255,0.75); }
+    .login-card .form-group input {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+      color: var(--clr-white);
+    }
+    .login-card .form-group input::placeholder { color: rgba(255,255,255,0.3); }
+    .login-card .form-group input:focus {
+      border-color: var(--clr-accent);
+      box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.18);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .login-extras {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: -8px;
+      margin-bottom: 22px;
+    }
+    .remember-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .remember-label input[type="checkbox"] {
+      accent-color: var(--clr-accent);
+      width: 15px; height: 15px;
+    }
+    .forgot-link { font-size: 0.85rem; color: var(--clr-accent); }
+    .forgot-link:hover { text-decoration: underline; }
+
+    .login-submit .btn { display: block; width: 100%; text-align: center; }
+
+    .login-divider {
+      text-align: center;
+      margin: 20px 0;
+      position: relative;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.82rem;
+    }
+    .login-divider::before,
+    .login-divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      height: 1px;
+      width: calc(50% - 24px);
+      background: rgba(255,255,255,0.12);
+    }
+    .login-divider::before { left: 0; }
+    .login-divider::after  { right: 0; }
+
+    .signup-prompt { text-align: center; font-size: 0.88rem; color: rgba(255,255,255,0.5); }
+    .signup-prompt a { color: var(--clr-accent); font-weight: 600; }
+    .signup-prompt a:hover { text-decoration: underline; }
+
+    .login-back {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .login-back a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .login-back a:hover { color: rgba(255,255,255,0.75); }
+
+    @media (max-width: 480px) { .login-card { padding: 32px 24px; } }
+  </style>
+</head>
+<body>
+
+<div class="login-page">
+  <div class="login-card">
+
+    <div class="login-brand">
+      <a href="index.html">
+        <img src="img/brand/Logo.png" alt="Curry Time" class="brand-icon">
+        <em>Curry</em> <span>Time</span>
+      </a>
+      <p>Sign in to your account</p>
+    </div>
+
+    <h1 class="login-title">Welcome back</h1>
+
+    <form id="login-form" action="#" method="post" novalidate>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required
+        >
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;"
+          autocomplete="current-password"
+          required
+        >
+      </div>
+      <div class="login-extras">
+        <label class="remember-label">
+          <input type="checkbox" name="remember"> Remember me
+        </label>
+        <a href="#" class="forgot-link">Forgot password?</a>
+      </div>
+      <div class="login-submit">
+        <button type="submit" class="btn btn-primary btn-lg">Sign In</button>
+      </div>
+    </form>
+
+    <div class="login-divider">or</div>
+
+    <p class="signup-prompt">
+      Don&#8217;t have an account? <a href="signup.html">Create one</a>
+    </p>
+
+    <div class="login-back">
+      <a href="index.html">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to home
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<script src="js/toast.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

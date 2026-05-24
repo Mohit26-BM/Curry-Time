@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View and manage your Curry Time table reservations.">
+  <link rel="icon" href="img/brand/Logo.png" type="image/png">
+  <title>My Bookings — Curry Time</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .bookings-section { padding: 64px 0 80px; }
+
+    #greeting {
+      font-size: 1.5rem;
+      color: var(--clr-secondary);
+      margin-bottom: 32px;
+      font-family: var(--font-serif);
+    }
+
+    .res-card {
+      background: var(--clr-white);
+      border-radius: var(--radius-md);
+      padding: 22px 24px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+      border-left: 4px solid var(--clr-primary);
+      transition: var(--transition);
+    }
+    .res-card:hover { box-shadow: var(--shadow-md); transform: translateX(3px); }
+
+    .res-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .res-date { font-weight: 700; font-size: 1rem; color: var(--clr-text); margin-bottom: 4px; }
+    .res-guests { font-size: 0.88rem; color: var(--clr-text-muted); }
+    .res-notes  { font-size: 0.88rem; color: var(--clr-text-muted); margin-top: 10px; font-style: italic; }
+
+    .res-status {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 12px;
+      border-radius: 50px;
+      flex-shrink: 0;
+    }
+    .status-pending   { background: #FEF6DC; color: #B07A10; }
+    .status-confirmed { background: #E0F5EC; color: #1A7A50; }
+    .status-cancelled { background: #FDE8E8; color: #9E1A1A; }
+
+    .empty-state {
+      text-align: center;
+      padding: 64px 24px;
+      color: var(--clr-text-muted);
+    }
+    .empty-state p { font-size: 1.05rem; margin-bottom: 24px; }
+
+    .error-msg { color: #9E1A1A; font-size: 0.95rem; }
+
+    .book-cta {
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--clr-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .book-cta p { color: var(--clr-text-muted); font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+
+<input type="checkbox" id="nav-open" class="nav-checkbox">
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="navbar-brand">
+      <img src="img/brand/Logo.png" alt="Curry Time" class="brand-icon">
+      <em>Curry</em> <span>Time</span>
+    </a>
+    <label for="nav-open" class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </label>
+    <ul class="navbar-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html" class="nav-login">Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container">
+    <h1>My Bookings</h1>
+    <p>All your table reservations in one place.</p>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <span>My Bookings</span>
+    </nav>
+  </div>
+</header>
+
+<main class="bookings-section">
+  <div class="container">
+
+    <p id="greeting"></p>
+
+    <div id="reservations-container">
+      <p style="color:var(--clr-text-muted)">Loading your reservations&hellip;</p>
+    </div>
+
+    <div class="book-cta">
+      <p>Want to add another booking?</p>
+      <a href="contact.html#book-table" class="btn btn-primary">Book a Table</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3><em>Curry Time</em></h3>
+        <p>Bringing authentic Indian flavours to your table since 2008. Food that warms the soul, service that warms the heart.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Follow us on Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Follow us on Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Follow us on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Visit Us</h4>
+        <address>
+          F-89/23, Eros Gardens<br>
+          Faridabad 121001, Haryana
+          <strong>Phone</strong>
+          0129-4244444
+          <strong>Email</strong>
+          CurryTimes26@gmail.com
+          <strong>Hours</strong>
+          Daily, 11am &#8211; 11pm
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Curry Time. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/my-reservations.js"></script>
+<script src="js/nav.js"></script>
+</body>
+</html>
