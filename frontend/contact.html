@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Curry Time — get in touch, make a reservation, or leave us feedback.">
+  <link rel="icon" href="img/brand/Logo.png" type="image/png">
+  <title>Contact Us — Curry Time</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .contact-section { padding: 72px 0; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .contact-info-header { margin-bottom: 32px; }
+    .contact-info-header .eyebrow {
+      display: inline-block;
+      color: var(--clr-primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+    }
+    .contact-info-header h2 { font-size: 1.8rem; color: var(--clr-secondary); margin-bottom: 12px; }
+    .contact-info-header p  { color: var(--clr-text-muted); line-height: 1.7; font-size: 0.95rem; }
+
+    .info-cards { display: flex; flex-direction: column; gap: 14px; }
+    .info-card {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--clr-white);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .info-card:hover { box-shadow: var(--shadow-md); transform: translateX(3px); }
+
+    .info-icon {
+      width: 44px; height: 44px;
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .info-icon--location { background: #FEE9DC; color: var(--clr-primary); }
+    .info-icon--phone    { background: #E8F0FF; color: #2A5CC7; }
+    .info-icon--email    { background: #E8F8EE; color: #1A8C50; }
+    .info-icon--hours    { background: #FEF6DC; color: #B07A10; }
+
+    .info-text h4 {
+      font-size: 0.78rem;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--clr-text-muted);
+      margin-bottom: 4px;
+    }
+    .info-text p  { font-size: 0.9rem; color: var(--clr-text); line-height: 1.6; }
+    .info-text a  { color: var(--clr-primary); }
+    .info-text a:hover { text-decoration: underline; }
+
+    /* Form */
+    .contact-form-wrap {
+      background: var(--clr-white);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+    }
+    .contact-form-wrap h2 { font-size: 1.5rem; color: var(--clr-secondary); margin-bottom: 6px; }
+    .contact-form-wrap > p { color: var(--clr-text-muted); font-size: 0.9rem; margin-bottom: 28px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .form-submit .btn { display: block; width: 100%; text-align: center; }
+    .form-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--clr-text-muted);
+      margin-top: 12px;
+    }
+
+    @media (max-width: 900px)  { .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
+    @media (max-width: 560px)  { .form-row { grid-template-columns: 1fr; } }
+    @media (max-width: 480px)  { .contact-form-wrap { padding: 28px 20px; } }
+
+    /* Book a Table section */
+    .book-form-wrap { max-width: 640px; margin: 0 auto; }
+    .form-select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--clr-text);
+      background: var(--clr-white);
+    }
+    .form-select:focus {
+      outline: none;
+      border-color: var(--clr-primary);
+      box-shadow: 0 0 0 3px rgba(192,82,42,0.12);
+    }
+  </style>
+</head>
+<body>
+
+<input type="checkbox" id="nav-open" class="nav-checkbox">
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="navbar-brand">
+      <img src="img/brand/Logo.png" alt="Curry Time" class="brand-icon">
+      <em>Curry</em> <span>Time</span>
+    </a>
+    <label for="nav-open" class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </label>
+    <ul class="navbar-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="login.html" class="nav-login">Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container">
+    <h1>Contact Us</h1>
+    <p>We&#8217;d love to hear from you — reservations, feedback, or just a hello.</p>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <span>Contact</span>
+    </nav>
+  </div>
+</header>
+
+<main class="contact-section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Info -->
+      <div class="contact-info">
+        <div class="contact-info-header">
+          <span class="eyebrow">Get in Touch</span>
+          <h2>We&#8217;re always happy to hear from you</h2>
+          <p>Whether you have a question about our menu, want to make a reservation, or just want to share feedback — reach out. We value every message.</p>
+        </div>
+
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="info-icon info-icon--location">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="info-text">
+              <h4>Address</h4>
+              <p>F-89/23, Eros Gardens<br>Faridabad 121001, Haryana</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon info-icon--phone">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 9.74 19.79 19.79 0 0 1 1.58 1.11 2 2 0 0 1 3.56 1h3a2 2 0 0 1 2 1.72 12.05 12.05 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.82A16 16 0 0 0 14.2 15.1l1.77-1.76a2 2 0 0 1 2.11-.45 12.05 12.05 0 0 0 2.81.7A2 2 0 0 1 22 15.92z"/></svg>
+            </div>
+            <div class="info-text">
+              <h4>Phone</h4>
+              <p>
+                <a href="tel:01294244444">0129-4244444</a><br>
+                <a href="tel:01140665555">011-40665555</a>
+              </p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon info-icon--email">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,7 12,13 2,7"/></svg>
+            </div>
+            <div class="info-text">
+              <h4>Email</h4>
+              <p><a href="mailto:CurryTimes26@gmail.com">CurryTimes26@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon info-icon--hours">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="info-text">
+              <h4>Opening Hours</h4>
+              <p>Monday &#8211; Sunday<br>11:00 AM &#8211; 11:00 PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="contact-form-wrap">
+        <h2>Send us a Message</h2>
+        <p>Fill in the form below and we&#8217;ll get back to you as soon as possible.</p>
+
+        <form id="contact-form" action="#" method="post" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first-name">First Name</label>
+              <input type="text" id="first-name" name="first_name" placeholder="e.g. Priya" required>
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last Name</label>
+              <input type="text" id="last-name" name="last_name" placeholder="e.g. Sharma" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number <span class="label-optional">(optional)</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="e.g. 9876543210">
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="e.g. Table reservation for 4" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us more..." required></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+          </div>
+          <p class="form-note">We typically respond within 24 hours. Warm regards &#8212; Curry Time team.</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- Book a Table -->
+<section id="book-table" class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Reserve Your Spot</span>
+      <h2>Book a Table</h2>
+      <p>Pick a date, time, and party size — we'll confirm your table shortly.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="contact-form-wrap book-form-wrap">
+      <form id="reservation-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="res-first-name">First Name</label>
+            <input type="text" id="res-first-name" name="first_name" placeholder="e.g. Priya" required>
+          </div>
+          <div class="form-group">
+            <label for="res-last-name">Last Name</label>
+            <input type="text" id="res-last-name" name="last_name" placeholder="e.g. Sharma" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="res-email">Email</label>
+            <input type="email" id="res-email" name="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="res-phone">Phone <span class="label-optional">(optional)</span></label>
+            <input type="tel" id="res-phone" name="phone" placeholder="e.g. 9876543210">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="res-date">Date</label>
+            <input type="date" id="res-date" name="date" required>
+          </div>
+          <div class="form-group">
+            <label for="res-time">Time</label>
+            <select id="res-time" name="time" required class="form-select">
+              <option value="">Select a time</option>
+              <option>11:00 AM</option><option>11:30 AM</option>
+              <option>12:00 PM</option><option>12:30 PM</option>
+              <option>1:00 PM</option><option>1:30 PM</option>
+              <option>2:00 PM</option><option>2:30 PM</option>
+              <option>3:00 PM</option><option>3:30 PM</option>
+              <option>4:00 PM</option><option>4:30 PM</option>
+              <option>5:00 PM</option><option>5:30 PM</option>
+              <option>6:00 PM</option><option>6:30 PM</option>
+              <option>7:00 PM</option><option>7:30 PM</option>
+              <option>8:00 PM</option><option>8:30 PM</option>
+              <option>9:00 PM</option><option>9:30 PM</option>
+              <option>10:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="res-guests">Number of Guests</label>
+          <select id="res-guests" name="guests" required class="form-select">
+            <option value="1">1 guest</option>
+            <option value="2" selected>2 guests</option>
+            <option value="3">3 guests</option>
+            <option value="4">4 guests</option>
+            <option value="5">5 guests</option>
+            <option value="6">6 guests</option>
+            <option value="7">7 guests</option>
+            <option value="8">8 guests</option>
+            <option value="9">9 guests</option>
+            <option value="10">10 guests</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="res-special">Special Requests <span class="label-optional">(optional)</span></label>
+          <textarea id="res-special" name="special_requests" placeholder="Allergies, seating preferences, celebrations&#8230;"></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary btn-lg">Request Reservation</button>
+        </div>
+        <p class="form-note">We&#8217;ll confirm your table via email. For urgent bookings call 0129-4244444.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3><em>Curry Time</em></h3>
+        <p>Bringing authentic Indian flavours to your table since 2008. Food that warms the soul, service that warms the heart.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Follow us on Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Follow us on Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Follow us on X">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Visit Us</h4>
+        <address>
+          F-89/23, Eros Gardens<br>
+          Faridabad 121001, Haryana
+          <strong>Phone</strong>
+          0129-4244444
+          <strong>Email</strong>
+          CurryTimes26@gmail.com
+          <strong>Hours</strong>
+          Daily, 11am &#8211; 11pm
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Curry Time. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/toast.js"></script>
+<script src="js/contact.js"></script>
+<script src="js/reservation-form.js"></script>
+<script src="js/nav.js"></script>
+</body>
+</html>
