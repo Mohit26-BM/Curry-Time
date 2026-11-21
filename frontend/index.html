@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Curry Time — Authentic Indian restaurant in Faridabad. Fresh ingredients, classic recipes, warm ambiance. Curries, pizzas, burgers, and more.">
-  <link rel="icon" href="img/brand/Logo.png" type="image/png">
+  <link rel="icon" href="img/brand/Logo.webp" type="image/webp">
   <title>Curry Time — Authentic Indian Restaurant</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
@@ -15,7 +15,7 @@
       align-items: center;
       justify-content: center;
       padding: calc(var(--nav-h) + 40px) 24px 80px;
-      background: linear-gradient(135deg, rgba(37,21,10,0.82) 0%, rgba(92,42,14,0.74) 50%, rgba(139,58,16,0.68) 100%), url('img/hero/Curry_Home.png') center / cover no-repeat;
+      background: linear-gradient(135deg, rgba(37,21,10,0.92) 0%, rgba(80,36,12,0.86) 50%, rgba(110,46,14,0.82) 100%), url('img/hero/Curry_Home.webp') center / cover no-repeat;
       overflow: hidden;
       text-align: center;
       position: relative;
@@ -49,7 +49,7 @@
     .hero h1 em { color: var(--clr-accent); }
     .hero-sub {
       font-size: clamp(1rem, 2vw, 1.2rem);
-      color: rgba(255,255,255,0.72);
+      color: rgba(255,255,255,0.86);
       max-width: 520px;
       margin: 0 auto 36px;
       line-height: 1.7;
@@ -66,7 +66,7 @@
     }
     .stat-item { text-align: center; }
     .stat-num  { display: block; font-family: var(--font-serif); font-size: 2rem; color: var(--clr-accent); font-weight: 700; }
-    .stat-lbl  { font-size: 0.78rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 2px; }
+    .stat-lbl  { font-size: 0.78rem; color: rgba(255,255,255,0.86); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 2px; }
 
     /* ---- Features ---- */
     .features-grid {
@@ -93,10 +93,10 @@
       transition: var(--transition);
     }
     .feature-card:hover .feature-img { transform: scale(1.04); }
-    .feature-img--1 { background-image: url('img/features/feature1.jpg'); background-color: #1A5C2A; }
-    .feature-img--2 { background-image: url('img/features/feature2.jpg'); background-color: #8B3A10; }
-    .feature-img--3 { background-image: url('img/features/feature3.jpg'); background-color: #B8892A; }
-    .feature-img--4 { background-image: url('img/features/feature4.jpg'); background-color: #1A6090; }
+    .feature-img--1 { background-image: url('img/features/feature1.webp'); background-color: #1A5C2A; }
+    .feature-img--2 { background-image: url('img/features/feature2.webp'); background-color: #8B3A10; }
+    .feature-img--3 { background-image: url('img/features/feature3.webp'); background-color: #B8892A; }
+    .feature-img--4 { background-image: url('img/features/feature4.webp'); background-color: #1A6090; }
     .feature-body { padding: 24px 20px; }
     .feature-card h3 { font-size: 1.05rem; color: var(--clr-secondary); margin-bottom: 8px; }
     .feature-card p  { font-size: 0.9rem; color: var(--clr-text-muted); line-height: 1.6; }
@@ -131,9 +131,9 @@
       text-align: center;
       padding: 0 16px;
     }
-    .dish-visual--1 { background: url('img/dishes/dish1.jpg') center / cover no-repeat; }
-    .dish-visual--2 { background: url('img/dishes/dish2.jpg') center / cover no-repeat; }
-    .dish-visual--3 { background: url('img/dishes/dish3.jpg') center / cover no-repeat; }
+    .dish-visual--1 { background: url('img/dishes/dish1.webp') center / cover no-repeat; }
+    .dish-visual--2 { background: url('img/dishes/dish2.webp') center / cover no-repeat; }
+    .dish-visual--3 { background: url('img/dishes/dish3.webp') center / cover no-repeat; }
     .dish-visual-label { display: none; }
 
     .dish-info { padding: 22px; }
@@ -155,7 +155,7 @@
       flex-wrap: wrap;
     }
     .cta-inner h2 { font-size: clamp(1.5rem, 3vw, 2rem); color: var(--clr-white); margin-bottom: 8px; }
-    .cta-inner p  { color: rgba(255,255,255,0.75); font-size: 1rem; }
+    .cta-inner p  { color: #FFFFFF; font-size: 1rem; }
     .cta-actions  { display: flex; gap: 14px; flex-wrap: wrap; flex-shrink: 0; }
 
     @media (max-width: 1024px) {
@@ -167,6 +167,9 @@
       .features-grid { grid-template-columns: 1fr; }
       .dishes-grid   { grid-template-columns: 1fr; }
       .cta-inner     { text-align: center; justify-content: center; }
+      /* the two buttons must fit a narrow phone instead of pushing the page sideways */
+      .cta-actions   { flex-shrink: 1; max-width: 100%; justify-content: center; }
+      .cta-actions .btn { padding-left: 24px; padding-right: 24px; text-align: center; }
     }
   </style>
 </head>
@@ -177,7 +180,7 @@
 <nav class="navbar">
   <div class="container">
     <a href="index.html" class="navbar-brand">
-      <img src="img/brand/Logo.png" alt="Curry Time" class="brand-icon">
+      <img src="img/brand/Logo.webp" alt="Curry Time" class="brand-icon">
       <em>Curry</em> <span>Time</span>
     </a>
     <label for="nav-open" class="nav-toggle" aria-label="Toggle navigation">

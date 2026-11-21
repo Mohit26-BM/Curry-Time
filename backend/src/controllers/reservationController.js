@@ -1,5 +1,6 @@
 const db = require('../config/database');
 const transporter = require('../config/email');
+const { escapeHtml: h } = require('../utils');
 
 async function create(req, res, next) {
   try {
@@ -21,7 +22,7 @@ async function create(req, res, next) {
     res.status(201).json({
       success: true,
       message: "Reservation request received! We'll confirm your table shortly.",
-      reservation: { id },
+      reservation: { id: Number(id) },
     });
   } catch (err) {
     next(err);
@@ -34,11 +35,11 @@ async function sendReservationEmails({ first_name, last_name, email, phone, date
   await transporter.sendMail({
     from,
     to: email,
-    subject: 'Reservation Request Received — Curry Time',
+    subject: 'Reservation Request Received - Curry Time',
     html: `
-      <p>Hi ${first_name},</p>
-      <p>We've received your reservation request for <strong>${guests} guest(s)</strong> on <strong>${date}</strong> at <strong>${time}</strong>.</p>
-      <p>We'll confirm your table soon. To make changes, call us at <a href="tel:01294244444">0129-4244444</a>.</p>
+      <p>Hi ${h(first_name)},</p>
+      <p>We have received your reservation request for <strong>${h(guests)} guest(s)</strong> on <strong>${h(date)}</strong> at <strong>${h(time)}</strong>.</p>
+      <p>We will confirm your table soon. To make changes, call us at <a href="tel:01294244444">0129-4244444</a>.</p>
       <p>Warm regards,<br><strong>Curry Time</strong><br>F-89/23, Eros Gardens, Faridabad</p>
     `,
   });
@@ -46,16 +47,16 @@ async function sendReservationEmails({ first_name, last_name, email, phone, date
   await transporter.sendMail({
     from,
     to: process.env.RESTAURANT_EMAIL,
-    subject: `[Reservation] ${date} at ${time} — ${guests} guest(s)`,
+    subject: `[Reservation] ${date} at ${time} - ${guests} guest(s)`,
     html: `
       <h2>New reservation request</h2>
-      <p><strong>Name:</strong> ${first_name} ${last_name}</p>
-      <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-      ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}
-      <p><strong>Date:</strong> ${date}</p>
-      <p><strong>Time:</strong> ${time}</p>
-      <p><strong>Guests:</strong> ${guests}</p>
-      ${special_requests ? `<p><strong>Special requests:</strong> ${special_requests}</p>` : ''}
+      <p><strong>Name:</strong> ${h(first_name)} ${h(last_name)}</p>
+      <p><strong>Email:</strong> ${h(email)}</p>
+      ${phone ? `<p><strong>Phone:</strong> ${h(phone)}</p>` : ''}
+      <p><strong>Date:</strong> ${h(date)}</p>
+      <p><strong>Time:</strong> ${h(time)}</p>
+      <p><strong>Guests:</strong> ${h(guests)}</p>
+      ${special_requests ? `<p><strong>Special requests:</strong> ${h(special_requests).replace(/\n/g, '<br>')}</p>` : ''}
     `,
   });
 }
@@ -65,9 +66,9 @@ function list(req, res, next) {
     const { date, status } = req.query;
     let query = 'SELECT * FROM reservations WHERE 1=1';
     const params = [];
-    if (date) { query += ' AND date = ?'; params.push(date); }
-    if (status) { query += ' AND status = ?'; params.push(status); }
-    query += ' ORDER BY date ASC, time ASC';
+    if (typeof date === 'string' && date) { query += ' AND date = ?'; params.push(date); }
+    if (typeof status === 'string' && status) { query += ' AND status = ?'; params.push(status); }
+    query += ' ORDER BY date ASC, time ASC LIMIT 500';
     res.json({ success: true, reservations: db.prepare(query).all(...params) });
   } catch (err) {
     next(err);
@@ -76,7 +77,10 @@ function list(req, res, next) {
 
 function updateStatus(req, res, next) {
   try {
-    db.prepare('UPDATE reservations SET status = ? WHERE id = ?').run(req.body.status, req.params.id);
+    const { changes } = db
+      .prepare('UPDATE reservations SET status = ? WHERE id = ?')
+      .run(req.body.status, Number(req.params.id));
+    if (changes === 0) return res.status(404).json({ success: false, message: 'Reservation not found' });
     res.json({ success: true, message: 'Reservation updated' });
   } catch (err) {
     next(err);
@@ -97,4 +101,4 @@ function listMine(req, res, next) {
   }
 }
 
-module.exports = { create, list, listMine, updateStatus };
+module.exports = { create, list, listMine, updateStatus, sendReservationEmails };

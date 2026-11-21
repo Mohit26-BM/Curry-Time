@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  fetch('/api/auth/me', { credentials: 'include' })
+  fetch('/api/auth/session', { credentials: 'include' })
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (data) {
       if (!data || !data.user) return;

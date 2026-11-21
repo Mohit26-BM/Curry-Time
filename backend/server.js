@@ -1,6 +1,15 @@
 const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
+// Refuse to start with a missing or weak signing secret
+const { getJwtSecret } = require('./src/config/secret');
+try {
+  getJwtSecret();
+} catch (err) {
+  console.error(err.message);
+  process.exit(1);
+}
+
 const app = require('./src/app');
 
 const PORT = process.env.PORT || 3000;

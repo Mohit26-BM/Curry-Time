@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!form) return;
 
   // Pre-fill name/email when logged in
-  fetch('/api/auth/me', { credentials: 'include' })
+  fetch('/api/auth/session', { credentials: 'include' })
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (data) {
       if (!data || !data.user) return;

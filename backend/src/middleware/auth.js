@@ -1,16 +1,26 @@
 const jwt = require('jsonwebtoken');
 const db = require('../config/database');
+const { getJwtSecret } = require('../config/secret');
+
+const findUser = db.prepare('SELECT id, email, first_name, last_name, role FROM users WHERE id = ?');
+
+function readToken(req) {
+  const header = req.headers.authorization;
+  return req.cookies?.token || (header && header.startsWith('Bearer ') ? header.slice(7) : null);
+}
+
+function userFromToken(token) {
+  const { id } = jwt.verify(token, getJwtSecret(), { algorithms: ['HS256'] });
+  return findUser.get(id);
+}
 
 function authenticate(req, res, next) {
-  const token = req.cookies?.token || req.headers.authorization?.replace('Bearer ', '');
+  const token = readToken(req);
   if (!token) {
     return res.status(401).json({ success: false, message: 'Authentication required' });
   }
   try {
-    const { id } = jwt.verify(token, process.env.JWT_SECRET);
-    const user = db
-      .prepare('SELECT id, email, first_name, last_name, role FROM users WHERE id = ?')
-      .get(id);
+    const user = userFromToken(token);
     if (!user) return res.status(401).json({ success: false, message: 'User not found' });
     req.user = user;
     next();
@@ -19,16 +29,13 @@ function authenticate(req, res, next) {
   }
 }
 
-function optionalAuthenticate(req, res, next) {
-  const token = req.cookies?.token || req.headers.authorization?.replace('Bearer ', '');
+function optionalAuthenticate(req, _res, next) {
+  const token = readToken(req);
   if (!token) return next();
   try {
-    const { id } = jwt.verify(token, process.env.JWT_SECRET);
-    const user = db
-      .prepare('SELECT id, email, first_name, last_name, role FROM users WHERE id = ?')
-      .get(id);
+    const user = userFromToken(token);
     if (user) req.user = user;
-  } catch { /* invalid token — treat as guest */ }
+  } catch { /* invalid token: treat as a guest */ }
   next();
 }
 

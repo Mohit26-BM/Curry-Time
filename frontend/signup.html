@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Create your Curry Time account to manage reservations and personalise your dining experience.">
-  <link rel="icon" href="img/brand/Logo.png" type="image/png">
+  <link rel="icon" href="img/brand/Logo.webp" type="image/webp">
   <title>Sign Up — Curry Time</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
@@ -57,8 +57,8 @@
       font-style: italic;
       color: var(--clr-accent);
     }
-    .signup-brand a span { color: rgba(255,255,255,0.85); font-style: normal; }
-    .signup-brand p { color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 8px; }
+    .signup-brand a span { color: rgba(255,255,255,0.86); font-style: normal; }
+    .signup-brand p { color: rgba(255,255,255,0.86); font-size: 0.85rem; margin-top: 8px; }
 
     .signup-title { font-size: 1.3rem; color: var(--clr-white); margin-bottom: 22px; }
 
@@ -82,13 +82,13 @@
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
     /* Dark context overrides */
-    .signup-card .form-group label { color: rgba(255,255,255,0.75); }
+    .signup-card .form-group label { color: rgba(255,255,255,0.86); }
     .signup-card .form-group input {
       background: rgba(255, 255, 255, 0.08);
       border-color: rgba(255, 255, 255, 0.15);
       color: var(--clr-white);
     }
-    .signup-card .form-group input::placeholder { color: rgba(255,255,255,0.3); }
+    .signup-card .form-group input::placeholder { color: rgba(255,255,255,0.62); }
     .signup-card .form-group input:focus {
       border-color: var(--clr-accent);
       box-shadow: 0 0 0 3px rgba(245,166,35,0.18);
@@ -103,9 +103,11 @@
       border-radius: 2px;
       background: rgba(255,255,255,0.12);
     }
+    .signup-card .label-optional { color: rgba(255,255,255,0.72); }
+    .terms-group a { color: #FFC857; }
     .hint-label {
       font-size: 0.75rem;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.86);
       margin-top: 5px;
     }
 
@@ -125,7 +127,7 @@
     }
     .terms-group label {
       font-size: 0.85rem;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.86);
       cursor: pointer;
       line-height: 1.5;
     }
@@ -140,7 +142,7 @@
       text-align: center;
       margin: 20px 0;
       position: relative;
-      color: rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.86);
       font-size: 0.82rem;
     }
     .signup-divider::before,
@@ -156,8 +158,8 @@
     .signup-divider::after  { right: 0; }
 
     /* Footer links */
-    .signin-prompt { text-align: center; font-size: 0.88rem; color: rgba(255,255,255,0.5); }
-    .signin-prompt a { color: var(--clr-accent); font-weight: 600; }
+    .signin-prompt { text-align: center; font-size: 0.88rem; color: rgba(255,255,255,0.86); }
+    .signin-prompt a { color: #FFC857; font-weight: 600; }
     .signin-prompt a:hover { text-decoration: underline; }
 
     .signup-back {
@@ -169,10 +171,10 @@
       align-items: center;
       gap: 6px;
       font-size: 0.85rem;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.86);
       transition: var(--transition);
     }
-    .signup-back a:hover { color: rgba(255,255,255,0.75); }
+    .signup-back a:hover { color: rgba(255,255,255,0.86); }
 
     @media (max-width: 540px) {
       .signup-card  { padding: 32px 22px; }
@@ -188,7 +190,7 @@
     <!-- Brand -->
     <div class="signup-brand">
       <a href="index.html">
-        <img src="img/brand/Logo.png" alt="Curry Time" class="brand-icon">
+        <img src="img/brand/Logo.webp" alt="Curry Time" class="brand-icon">
         <em>Curry</em> <span>Time</span>
       </a>
       <p>Create your free account</p>

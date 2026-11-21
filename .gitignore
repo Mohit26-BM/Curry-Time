@@ -1,14 +1,28 @@
 # Dependencies
-backend/node_modules/
+node_modules/
 
 # Database (auto-created on first run)
 backend/data/
+*.db
+*.db-shm
+*.db-wal
 
-# Real secrets — never commit
-backend/.env
+# Real secrets: never commit. The template is .env.example
+.env
+.env.*
+!.env.example
 
-# OS junk
+# Tests, local notes and AI-tool files stay on this machine
+backend/tests/
+backend/vitest.config.js
+_local/
+CLAUDE.md
+AGENTS.md
+.claude/
+
+# Editor and OS junk
+.hintrc
+.vscode/
 .DS_Store
 Thumbs.db
-
-.claude/
+*.log
